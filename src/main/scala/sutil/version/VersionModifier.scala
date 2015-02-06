@@ -1,11 +1,12 @@
 package sutil.version
 
-import sutil.Imports._
-
 case class VersionModifier(tag: String, version: Option[VersionNumber]) extends Ordered[VersionModifier] {
 
-  def compare(other: VersionModifier): Int =
-    (tagOrder compare other.tagOrder) ifZero ((version getOrElse VersionNumber.Zero) compare (other.version getOrElse VersionNumber.Zero))
+  def compare(other: VersionModifier): Int = {
+    val c = tagOrder compare other.tagOrder
+    if (c == 0) ((version getOrElse VersionNumber.Zero) compare (other.version getOrElse VersionNumber.Zero))
+    else c
+  }
 
   override lazy val toString =
     tag + (if (version.isDefined) version.get.toString else "")
@@ -32,7 +33,7 @@ object VersionModifier {
     )
 
   private lazy val tagOrder =
-    (for ((group, index) ← tags zipWithIndex; tag ← group) yield tag -> index).toMap
+    (for ((group, index) ← tags.zipWithIndex; tag ← group) yield tag -> index).toMap
 
   def apply(tag: String, version: VersionNumber): VersionModifier =
     VersionModifier(tag, Some(version))

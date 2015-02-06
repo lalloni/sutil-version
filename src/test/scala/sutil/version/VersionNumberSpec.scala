@@ -1,19 +1,18 @@
 package sutil.version
 
-import org.scalatest.Spec
-import org.scalatest.matchers.ShouldMatchers
 import org.junit.runner.RunWith
+import org.scalatest.{ FunSpec, Matchers }
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class VersionNumberSpec extends Spec with ShouldMatchers {
+class VersionNumberSpec extends FunSpec with Matchers {
 
   describe("VersionNumber") {
 
     it("should not allow to be built without numbers") {
-      evaluating {
+      an[IllegalArgumentException] should be thrownBy {
         N()
-      } should produce[IllegalArgumentException]
+      }
     }
 
     it("should print nice version number string") {
@@ -28,9 +27,9 @@ class VersionNumberSpec extends Spec with ShouldMatchers {
     }
 
     it("should not allow negative numbres") {
-      evaluating {
+      an[IllegalArgumentException] should be thrownBy {
         N(-10)
-      } should produce[IllegalArgumentException]
+      }
     }
 
     it("should be possible to pattern match on all numbers") {

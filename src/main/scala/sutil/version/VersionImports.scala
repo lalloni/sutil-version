@@ -1,5 +1,7 @@
 package sutil.version
 
+import scala.language.implicitConversions
+
 trait VersionImports {
 
   type N = VersionNumber

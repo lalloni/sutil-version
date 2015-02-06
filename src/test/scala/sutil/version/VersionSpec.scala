@@ -1,12 +1,11 @@
 package sutil.version
 
-import org.scalatest.Spec
-import org.scalatest.matchers.ShouldMatchers
 import org.junit.runner.RunWith
+import org.scalatest.{ FunSpec, Matchers }
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class VersionSpec extends Spec with ShouldMatchers {
+class VersionSpec extends FunSpec with Matchers {
 
   describe("A Version") {
 

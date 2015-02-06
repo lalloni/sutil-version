@@ -1,40 +1,11 @@
-Welcome to Sutil
-================
+sutil-version
+=============
 
-Sutil is just a small library of utilities not found (by the author) in other packages, written for the scala programming language.
-
-Some of the features include (in no particular order):
-
-Glob support & File enhancements
---------------------------------
-
-Globbing:
-
-```scala
-Seq("aalbla", "bla", "blo", "cla", "xlbasj") filter Glob("?l[ab]*") should be (Seq("bla", "cla", "xlbasj"))
-```
-
-File path manipulation & listing:
-
-```scala
-new File("/tmp") / "some" / "file.txt"        // returns a new File("/tmp/some/file.txt")
-new File("/tmp/file.txt") :+ ".gz"            // returns a new File("/tmp/file.txt.gz")
-new File("/tmp") / Glob("*.txt")              // returns a Seq[File] listing matching files in /tmp
-new File("/tmp").ls                           // returns a Seq[File] listing all files (and dirs) in /tmp
-new File("/tmp").lsr                          // returns a Seq[File] listing all files (and dirs) in /tmp and subdirs
-new File("/tmp/bla").parent                   // returns a new File("/tmp")
-new File("/etc") / Glob("*.d") / Glob("*.sh") // returns all "*.sh" files present in all "*.d" directories in "/etc"
-new File("/etc") / Glob("*.d") / "a_file"     // returns all "a_file" files present in all "*.d" directories in "/etc"
-```
-
-Note that all ```Glob("something")``` can be replaced by ```"something".g```.
-
-Version string parsing and matching
------------------------------------
+sutil-version is just a small library of utilities for working with version strings not found (by the author) in other packages, written in the scala programming language, such as...
 
 A set of classes to parse and match version strings in "common" formats.
 
-Classes modeling version strings and its components: 
+Classes modeling version strings and its components:
 
 ```scala
 Version(VersionNumber(2, 1), VersionModifier("beta", VersionNumber(5)))   // version "2.1-beta5"
@@ -76,7 +47,7 @@ Seq[Version]("3-sp4", "1", "1.0", "1.1", "2", "0.1", "2-snapshot", "3").sorted
 Version modifier tags compare impl knows some "common" (case insensitive) version tags:
 
 ```scala
-Seq[VersionModifier]("beta2", "Final", "ALPHA3", "sp2", "snapshot", "cr1", "beta").sorted 
+Seq[VersionModifier]("beta2", "Final", "ALPHA3", "sp2", "snapshot", "cr1", "beta").sorted
   // returns Seq[VersionModifier]("snapshot", "ALPHA3", "beta", "beta2", "cr1", "Final", "sp2")
 ```
 
@@ -98,13 +69,3 @@ VersionNumber(2,1) increment Fix == VersionNumber(2,1,1)
 VersionNumber(2,1) incrementAt 5 == VersionNumber(2,1,0,0,0,1)
 VersionNumber(2,1) incrementBy VersionNumber(0,1,1) == VersionNumber(2,2,1)
 ```
-
-More
-----
-
-* Digit numeric type and extraction
-* Binary units and formatting
-* Unbounded lazy seqs of number increments and powers
-* Object instance counting traits for instrumentation
-* Scala query table segmentation
-* etc.
