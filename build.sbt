@@ -1,8 +1,8 @@
-organization := "plalloni"
+organization := "pil.sutil"
 
 name := "sutil-version"
 
-version := "0.1-SNAPSHOT"
+version := "0.1"
 
 scalaVersion := "2.11.5"
 
@@ -16,9 +16,6 @@ libraryDependencies ++= Seq (
 
 publishMavenStyle := true
 
-publishTo <<= version { ver ⇒ Some(
-    Resolver
-        .file("Local Repository", file(Path.userHome
-            + "/projects/artifacts/maven-"
-            + (if (ver endsWith "-SNAPSHOT") "snapshots" else "releases")))
-        .mavenStyle)}
+seq(bintrayPublishSettings:_*)
+
+licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
